@@ -43,9 +43,14 @@ namespace Tech_Pro_Lab_1
         /// <returns> A boolean value specifying if the input is valid or not </returns>
         public bool checkInputValidation(string textField)
         {
-            if(textField.Length == 0)
+            if (textField.Length == 0)
             {
                 errorLabel.Visible = true;
+                return false;
+            } else if (System.Text.RegularExpressions.Regex.IsMatch(convertFromTextfield.Text, "[^.0-9]"))
+            {
+                errorLabel.Visible = true;
+
                 return false;
             }
             return true;
@@ -244,6 +249,5 @@ namespace Tech_Pro_Lab_1
             convertFromTextfield.Clear();
             errorLabel.Visible = false;
         }
-
     }
 }
