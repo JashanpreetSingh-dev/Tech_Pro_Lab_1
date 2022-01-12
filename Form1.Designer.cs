@@ -43,6 +43,7 @@
             this.toFahrenheit = new System.Windows.Forms.RadioButton();
             this.toKalvin = new System.Windows.Forms.RadioButton();
             this.button1 = new System.Windows.Forms.Button();
+            this.errorLabel = new System.Windows.Forms.Label();
             this.convertFrom.SuspendLayout();
             this.convertTo.SuspendLayout();
             this.SuspendLayout();
@@ -58,7 +59,6 @@
             this.label1.Size = new System.Drawing.Size(748, 80);
             this.label1.TabIndex = 0;
             this.label1.Text = "Temperature Calculator";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // label2
             // 
@@ -132,7 +132,6 @@
             this.convertFromTextfield.Name = "convertFromTextfield";
             this.convertFromTextfield.Size = new System.Drawing.Size(257, 30);
             this.convertFromTextfield.TabIndex = 9;
-            this.convertFromTextfield.TextChanged += new System.EventHandler(this.convertFromTextfield_TextChanged);
             // 
             // convertToTextfield
             // 
@@ -220,12 +219,25 @@
             this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
+            // errorLabel
+            // 
+            this.errorLabel.AutoSize = true;
+            this.errorLabel.BackColor = System.Drawing.Color.Brown;
+            this.errorLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.errorLabel.Location = new System.Drawing.Point(320, 410);
+            this.errorLabel.Name = "errorLabel";
+            this.errorLabel.Size = new System.Drawing.Size(460, 32);
+            this.errorLabel.TabIndex = 14;
+            this.errorLabel.Text = "Enter a Valid Input ! Hit Reset All";
+            this.errorLabel.Visible = false;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.ClientSize = new System.Drawing.Size(862, 493);
+            this.Controls.Add(this.errorLabel);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.convertTo);
             this.Controls.Add(this.convertFrom);
@@ -261,6 +273,7 @@
         private System.Windows.Forms.RadioButton toFahrenheit;
         private System.Windows.Forms.RadioButton toKalvin;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Label errorLabel;
     }
 }
 

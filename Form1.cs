@@ -27,6 +27,17 @@ namespace Tech_Pro_Lab_1
             toKalvin.Checked = false;
         }
 
+        public bool checkInputValidation(string textField)
+        {
+            if(textField.Length == 0)
+            {
+                errorLabel.Visible = true;
+                return false;
+            }
+            return true;
+
+        }
+
         public float FromFtoC(float fahrenheit)
         {
             return (fahrenheit - 32) * 5/9;
@@ -44,98 +55,111 @@ namespace Tech_Pro_Lab_1
             return (float)(celsius + 273.15);
         }
 
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void toCelsius_CheckedChanged(object sender, EventArgs e)
         {
-            if (fromCelsius.Checked && toCelsius.Checked)
+            if (checkInputValidation(convertFromTextfield.Text) == false)
             {
-                string convertedTemp = convertFromTextfield.Text;
-                convertToTextfield.Text = convertedTemp;
+                convertToTextfield.Clear();
             }
-            else if (fromFahrenheit.Checked && toCelsius.Checked)
+            else
             {
-                float convertedTemp = float.Parse(convertFromTextfield.Text);
-                convertToTextfield.Text = FromFtoC(convertedTemp).ToString();
+                if (fromCelsius.Checked && toCelsius.Checked)
+                {
+                    string convertedTemp = convertFromTextfield.Text;
+                    convertToTextfield.Text = convertedTemp;
+                }
+                else if (fromFahrenheit.Checked && toCelsius.Checked)
+                {
+                    float convertedTemp = float.Parse(convertFromTextfield.Text);
+                    convertToTextfield.Text = FromFtoC(convertedTemp).ToString();
+                }
+                else if (fromKalvin.Checked && toCelsius.Checked)
+                {
+                    float convertedTemp = float.Parse(convertFromTextfield.Text);
+                    convertToTextfield.Text = FromKtoC(convertedTemp).ToString();
+                }
             }
-            else if (fromKalvin.Checked && toCelsius.Checked)
-            {
-                float convertedTemp = float.Parse(convertFromTextfield.Text);
-                convertToTextfield.Text = FromKtoC(convertedTemp).ToString();
-
-            }
-            
         }
 
         private void toFahrenheit_CheckedChanged(object sender, EventArgs e)
         {
-            if (fromCelsius.Checked && toFahrenheit.Checked)
+            if (checkInputValidation(convertFromTextfield.Text) == false)
             {
-                float convertedTemp = float.Parse(convertFromTextfield.Text);
-                convertToTextfield.Text = FromCtoF(convertedTemp).ToString();
+                convertToTextfield.Clear();
             }
-            else if (fromFahrenheit.Checked && toFahrenheit.Checked)
+            else
             {
-                string convertedTemp = convertFromTextfield.Text;
-                convertToTextfield.Text = convertedTemp;
-            }
-            else if (fromKalvin.Checked && toFahrenheit.Checked)
-            {
-                float convertedTemp = float.Parse(convertFromTextfield.Text);
-                convertToTextfield.Text = FromCtoF(FromKtoC(convertedTemp)).ToString();
+                if (fromCelsius.Checked && toFahrenheit.Checked)
+                {
+                    float convertedTemp = float.Parse(convertFromTextfield.Text);
+                    convertToTextfield.Text = FromCtoF(convertedTemp).ToString();
+                }
+                else if (fromFahrenheit.Checked && toFahrenheit.Checked)
+                {
+                    string convertedTemp = convertFromTextfield.Text;
+                    convertToTextfield.Text = convertedTemp;
+                }
+                else if (fromKalvin.Checked && toFahrenheit.Checked)
+                {
+                    float convertedTemp = float.Parse(convertFromTextfield.Text);
+                    convertToTextfield.Text = FromCtoF(FromKtoC(convertedTemp)).ToString();
 
+                }
             }
+
         }
 
         private void toKalvin_CheckedChanged(object sender, EventArgs e)
         {
-            if (fromCelsius.Checked && toKalvin.Checked)
+            if (checkInputValidation(convertFromTextfield.Text) == false)
             {
-                float convertedTemp = float.Parse(convertFromTextfield.Text);
-                convertToTextfield.Text = FromCtoK(convertedTemp).ToString();
+                convertToTextfield.Clear();
             }
-            else if (fromFahrenheit.Checked && toKalvin.Checked)
+            else
             {
-                float convertedTemp = float.Parse(convertFromTextfield.Text);
-                convertToTextfield.Text = FromCtoK(FromFtoC(convertedTemp)).ToString();
-            }
-            else if (fromKalvin.Checked && toKalvin.Checked)
-            { 
-                string convertedTemp = convertFromTextfield.Text;
-                convertToTextfield.Text = convertedTemp;
+                if (fromCelsius.Checked && toKalvin.Checked)
+                {
+                    float convertedTemp = float.Parse(convertFromTextfield.Text);
+                    convertToTextfield.Text = FromCtoK(convertedTemp).ToString();
+                }
+                else if (fromFahrenheit.Checked && toKalvin.Checked)
+                {
+                    float convertedTemp = float.Parse(convertFromTextfield.Text);
+                    convertToTextfield.Text = FromCtoK(FromFtoC(convertedTemp)).ToString();
+                }
+                else if (fromKalvin.Checked && toKalvin.Checked)
+                {
+                    string convertedTemp = convertFromTextfield.Text;
+                    convertToTextfield.Text = convertedTemp;
+                }
+
             }
         }
 
         private void fromCelsius_CheckedChanged(object sender, EventArgs e)
         {
-            toKalvin.Checked = false;
-            toCelsius.Checked = false;
-            toFahrenheit.Checked = false;
-            convertToTextfield.Clear();
+            clearRadioBtnsFrom();
+            errorLabel.Visible = false;
         }
 
         private void fromFahrenheit_CheckedChanged(object sender, EventArgs e)
         {
-            toKalvin.Checked = false;
-            toCelsius.Checked = false;
-            toFahrenheit.Checked = false;
-            convertToTextfield.Clear();
+            clearRadioBtnsFrom();
+            errorLabel.Visible = false;
         }
 
         private void fromKalvin_CheckedChanged(object sender, EventArgs e)
         {
+            clearRadioBtnsFrom();
+            errorLabel.Visible = false;
+        }
+
+        private void clearRadioBtnsFrom()
+        {
             toKalvin.Checked = false;
             toCelsius.Checked = false;
             toFahrenheit.Checked = false;
             convertToTextfield.Clear();
-        }
-
-        private void convertFromTextfield_TextChanged(object sender, EventArgs e)
-        {
-
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -143,7 +167,8 @@ namespace Tech_Pro_Lab_1
             resetRadioButtons();
             convertToTextfield.Clear();
             convertFromTextfield.Clear();
-
+            errorLabel.Visible = false;
         }
+
     }
 }
