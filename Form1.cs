@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 /// <summary>
 /// Lab 1: Temperature Conversion Calculator
-/// Authors: Jashanpreet Singh and Sean 
+/// Authors: Jashanpreet Singh and Xiang Zhu 
 /// Date: January 12 2022
 /// Source: Formulas for temperature conversion at : https://www.thoughtco.com/temperature-conversion-formulas-609324
 /// </summary>
